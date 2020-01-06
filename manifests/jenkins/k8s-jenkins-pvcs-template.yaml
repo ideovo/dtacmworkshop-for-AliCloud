@@ -1,0 +1,93 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: $DISKID7
+spec:
+  capacity:
+    storage: 20Gi
+  storageClassName: disk
+  accessModes:
+    - ReadWriteOnce
+  flexVolume:
+    driver: alicloud/disk
+    fsType: ext4
+    options:
+      volumeId: $DISKID7
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-jobs
+  namespace: cicd
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: disk
+  volumeName: $DISKID7
+  resources:
+    requests:
+      storage: 20Gi
+status: {}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: $DISKID8
+spec:
+  capacity:
+    storage: 20Gi
+  storageClassName: disk
+  accessModes:
+    - ReadWriteOnce
+  flexVolume:
+    driver: alicloud/disk
+    fsType: ext4
+    options:
+      volumeId: $DISKID8
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-workspaces
+  namespace: cicd
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: disk
+  volumeName: $DISKID8
+  resources:
+    requests:
+      storage: 20Gi
+status: {}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: $DISKID9
+spec:
+  capacity:
+    storage: 20Gi
+  storageClassName: disk
+  accessModes:
+    - ReadWriteOnce
+  flexVolume:
+    driver: alicloud/disk
+    fsType: ext4
+    options:
+      volumeId: $DISKID9
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  name: maven-repo
+  namespace: cicd
+spec: 
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: disk
+  volumeName: $DISKID9
+  resources:
+    requests:
+      storage: 20Gi
+status: {}
